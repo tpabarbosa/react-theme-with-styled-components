@@ -1,5 +1,7 @@
-export interface ThemeType {
-    name: string;
+export type ThemeMode = 'dark' | 'light';
+
+export type ThemeType = {
+    name: ThemeMode;
     color: string;
     background: string;
     colorTwo: string;
@@ -8,7 +10,7 @@ export interface ThemeType {
     backgroundButton: string;
 }
 
-export interface ThemeContextType {
+export type ThemeContextType = {
     theme: ThemeType;
-    dispatchTheme: (theme: string) => void;
+    dispatchTheme: (mode: ThemeMode) => void;
 }
