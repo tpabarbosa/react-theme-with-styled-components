@@ -10,7 +10,7 @@ export const ThemeTogglerButton = () => {
           <p>Click Icon to toggle theme</p>
           <p><S.Icon > 👇 </S.Icon></p>
           <S.Button onClick={themeToggler}>
-            {theme !== 'light' ? <S.Icon >☀</S.Icon> : <S.Icon >🌘</S.Icon>}
+            {theme === 'light' ? <S.Icon >☀</S.Icon> : <S.Icon >🌙</S.Icon>}
           </S.Button>
         </S.Container>
       );
