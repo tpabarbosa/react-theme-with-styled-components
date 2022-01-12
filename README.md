@@ -1,46 +1,59 @@
-# Getting Started with Create React App
+# React Theme with Styled-components and Typescript
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is an example of a theme implementation. It´s very simple, just a proof of concept.
 
-## Available Scripts
+### How it works
+Styled-components has theming support by exporting a *ThemeProvider* wrapper. This wrapper provides a theme prop to all styled components.
 
-In the project directory, you can run:
+    export const MyCustomStyledComponent = styled.div`
+        ...
+        background-color: ${props => props.theme.background};
+        color:  ${props => props.theme.text};
+        ...
+    `
 
-### `npm start`
+To use it with typescript we create a declaration file and extend styled-components *DefaultTheme* (that is an empty object by default) with an interface of our own theme.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    interface MyTheme {
+        ...
+        background: string;
+        text: string;
+        ...
+    }
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+That should be enough to start themming an application. Styled-components also provides some ways to get theme without styled-components, [check documentation](https://styled-components.com/docs/advanced#getting-the-theme-without-styled-components). In this repo I made use of *ThemeContext* from styled-components, but implemented my own *useTheme*.
 
-### `npm test`
+In this project I also made use of another styled-components feature, the helper method *createGlobalStyle*. It creates a special styled-component that can reset CSS styles or apply base stylesheets with theme, for example. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In *'.src/Theme/index.tsx'* there are two exports: 
+* **ThemedApp**: it's a wrapper that provides theme to the whole app via ThemeContext, ThemeProvider and GlobalStyle, and also gets and sets theme's name in localStorage;
+* **useTheme**: it's a custom hook that reads theme from ThemeContext and returns a tuple with theme name and a toggler method so other components can interact with theme.
 
-### `npm run build`
+To be able to change theme I had implemented a very simple *ThemeTogglerButton* that imports useTheme and just calls it's toggler method when a button is clicked.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Try it:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone repository
+```
+$ git clone https://github.com/tpabarbosa/react-theme-with-styled-components
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install dependencies
+```
+$ npm install 
+```
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+3. Run
+```
+$ npm run start 
+```
 
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+To learn Typescript, check out the [Typescript documentation](https://www.typescriptlang.org/).
+
+To learn Styled-components, check out the [Styled-components documentation](https://styled-components.com/)
