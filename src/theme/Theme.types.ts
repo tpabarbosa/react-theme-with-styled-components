@@ -9,8 +9,3 @@ export type ThemeType = {
     colorButton:string;
     backgroundButton: string;
 }
-
-export type ThemeContextType = {
-    theme: ThemeType;
-    dispatchTheme: (mode: ThemeMode) => void;
-}
