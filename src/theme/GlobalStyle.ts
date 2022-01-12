@@ -1,6 +1,5 @@
 import { createGlobalStyle, ThemeProps, withTheme } from 'styled-components';
-import { ThemeType } from './theme/Theme.types';
-
+import { ThemeType } from './Theme.types';
   
 const GlobalStyle = createGlobalStyle<ThemeProps<ThemeType>>(({theme}) => `
 
@@ -21,8 +20,6 @@ const GlobalStyle = createGlobalStyle<ThemeProps<ThemeType>>(({theme}) => `
     }
 
     button { 
-      margin: 1rem;
-      padding: 1rem;
       background-color: ${ theme.backgroundButton};
       color: ${ theme.colorButton};
       cursor: pointer;
