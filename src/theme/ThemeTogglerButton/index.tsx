@@ -1,31 +1,19 @@
-import useTheme from '../useTheme';
-import * as C from './styles';
+
+import useTheme from '..';
+import * as S from './styles';
 
 export const ThemeTogglerButton = () => {
-    const {theme, themeToggler} = useTheme();
+    const [theme, themeToggler] = useTheme();
 
     return (
-        <C.Container>
-          <label htmlFor="checkbox" className="switch">
-            <input
-              id="checkbox"
-              type="checkbox"
-              onClick={themeToggler}
-              onChange={() => false}
-              checked={theme === 'dark'}
-            />
-            <C.Icons className="slider round">
-              {theme !== 'light' ? (
-                <>
-                  <C.Icon >☀</C.Icon>
-                </>
-              ) : (
-                <>
-                  <C.Icon >🌘</C.Icon>
-                </>
-              )}
-            </C.Icons>
-          </label>
-        </C.Container>
+        <S.Container>
+          <p>Click Icon to toggle theme</p>
+          <p><S.Icon > 👇 </S.Icon></p>
+          <S.Button onClick={themeToggler}>
+            {theme !== 'light' ? <S.Icon >☀</S.Icon> : <S.Icon >🌘</S.Icon>}
+          </S.Button>
+        </S.Container>
       );
 }
+
+
