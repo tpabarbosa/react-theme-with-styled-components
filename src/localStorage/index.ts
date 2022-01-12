@@ -8,10 +8,6 @@ type Storage = {
     [key: string]: Value
 }
 
-export const useLocalStorage = () => {
-    return {set: setToLS, get: getFromLS}
-}
-
 const setToLS = (key: string, value: Value) => {
     let stored = window.localStorage.getItem(localStorageKey);
     let obj: Storage = {};
@@ -33,3 +29,7 @@ const getFromLS = (key: string) => {
     }
     return null;
 }
+
+export const localStorage = {set: setToLS, get: getFromLS}
+
+export default localStorage
