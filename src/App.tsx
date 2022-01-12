@@ -1,16 +1,14 @@
-import { Theme } from "./theme/Theme";
-import { ThemeTogglerButton } from "./theme/ThemeTogglerButton";
-import { Container } from './App.styles';
+import useTheme from "./Theme";
+import { ThemeTogglerButton } from "./Theme/ThemeTogglerButton";
+import * as S from './App.styles';
 
 export const App = () => {
+  const [theme] = useTheme();
 
   return (
-    <Theme>
-      <Container className="App">
+      <S.Container className="App">
         <ThemeTogglerButton  />
-        <h1>Testing Text Theme</h1>
-        <button>Testing Button Theme</button>
-      </Container>
-    </Theme>
+        <h1>Now theme is {theme}</h1>
+      </S.Container>
   );
 }
